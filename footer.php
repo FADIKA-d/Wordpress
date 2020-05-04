@@ -1,7 +1,9 @@
-<footer class="m-3">
+</div>
+<footer class="">
 	    <div class="row">
-	        <div class="col-12 p-3 text-muted bg-dark text-center">
-	        [ FOOTER ]
+	        <div class="col-12">
+	        <!-- NAVBARRE -->
+    		<?php get_template_part('template-parts/page/partnav_secondaire'); ?>
 	        </div>
 	    </div>
 </div> <!-- .container -->  

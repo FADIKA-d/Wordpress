@@ -1,16 +1,44 @@
 <?php
 
-function youpi_theme_support() 
-{
-  load_theme_textdomain( 'youpi', get_template_directory() . '/languages' );
-  add_editor_style();
-  add_theme_support('post-formats', array('aside', 'image', 'link', 'quote', 'status') );
-  add_theme_support('custom-background', array ('default-color'=> 'e6e6e6',));
-  add_theme_support('menus');
-  register_nav_menu("principal", "Menu principal");
+/**
+ * youpi functions and definitions
+ *
+ * @link https://developer.wordpress.org/themes/basics/theme-functions/
+ *
+ * @package WordPress
+ * @subpackage youpi
+ * @since youpi 1.0.0
+ */
 
+ function youpi_theme_support() 
+{
+  
+  
+  add_editor_style();
+  add_theme_support( 'post-formats', array('aside', 'image', 'link', 'quote', 'status') );
+  add_theme_support( 'post-thumbnails' );
+  add_theme_support( 'title-tag' );
+  add_theme_support( 'custom-background', array ('default-color'=> 'e6e6e6',));
+  add_theme_support( 'menus');
+  add_theme_support( 'register_navwalker', require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php');
+  register_nav_menu( "principal", "Menu principal");
+  register_nav_menu( "secondaire", "Menu secondaire");
+  add_theme_support(
+		'custom-logo',
+		array(
+      'height'      => 100,
+      'width'       => 400,
+      'flex-height' => true,
+      'flex-width'  => true,
+      'header-text' => array( 'site-title', 'site-description' ),
+    )
+  );
+  
+  load_theme_textdomain( 'youpi');
 }
 add_action( 'after_setup_theme', 'youpi_theme_support' );
+
+
 
 function youpi_read_more_tag( $html ) 
 {
@@ -21,21 +49,21 @@ add_filter( 'the_content_more_link', 'youpi_read_more_tag' );
 
 
 // fonction logo
-function youpi_custom_logo_setup() 
-{
-   $aParams = array(
-      'height'      => 100,
-      'width'       => 400,
-      'flex-height' => true,
-      'flex-width'  => true,
-      'header-text' => array( 'site-title', 'site-description' ),
-   );
+// function youpi_custom_logo_setup() 
+// {
+//    $aParams = array(
+//       'height'      => 100,
+//       'width'       => 400,
+//       'flex-height' => true,
+//       'flex-width'  => true,
+//       'header-text' => array( 'site-title', 'site-description' ),
+//    );
 
-   // Ajout du support 
-   add_theme_support('custom-logo', $aParams );
-}
+//    // Ajout du support 
+//    add_theme_support('custom-logo', $aParams );
+// }
 
-add_action( 'after_setup_theme', 'youpi_custom_logo_setup' );
+// add_action( 'after_setup_theme', 'youpi_custom_logo_setup' );
 
 // fonction sidebar
 function youpi_sidebar_registration() {
@@ -70,12 +98,12 @@ function excerpt_display_strong($texte)
   add_filter('get_the_excerpt', 'excerpt_display_strong');
 
 // fonction menu
-function register_navwalker() 
-  {
-      require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
-  }
+// function register_navwalker() 
+//   {
+//       require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
+//   }
   
-  // add_action( 'after_setup_theme', 'register_navwalker' );
+//   add_action( 'after_setup_theme', 'register_navwalker' );
   
   
   
